@@ -1,0 +1,6 @@
+# never commit the large raw files
+ldc2021_test.csv
+ldc2021_train.csv
+
+# no task description
+LEC_Data_Challenge_2021_task.pdf
