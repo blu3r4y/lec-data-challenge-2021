@@ -1,0 +1,7 @@
+[tool.kedro]
+package_name = "ldc2021"
+project_name = "LEC Data Challenge 2021"
+project_version = "0.17.4"
+
+[tool.isort]
+profile = "black"

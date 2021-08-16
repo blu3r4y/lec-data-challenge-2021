@@ -1,0 +1,26 @@
+# https://kedro.readthedocs.io/en/stable/05_data/01_data_catalog.html
+
+ldc_train:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/ldc2021_train.csv.gz
+  load_args:
+    compression: "gzip"
+    names: ["cycle", "phi", "acc", "pa"]
+    header: 0
+
+ldc_test:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/ldc2021_test.csv.gz
+  load_args:
+    compression: "gzip"
+    names: ["cycle", "phi", "acc"]
+    usecols: [0, 1, 2]
+    header: 0
+
+ldc_test_clean:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/ldc2021_test_clean.par
+
+ldc_train_clean:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/ldc2021_train_clean.par
