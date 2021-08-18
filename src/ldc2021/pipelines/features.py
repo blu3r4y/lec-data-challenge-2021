@@ -1,14 +1,11 @@
 import numpy as np
 import pandas as pd
+from kedro.pipeline import Pipeline, node
 from scipy.integrate import cumtrapz
 
 
-def transform_cycle(df: pd.DataFrame) -> pd.DataFrame:
-    # remove prefix (either "train" or "test")
-    prefix_length = len(df["cycle"].iloc[0].split("0")[0])
-    df["cycle"] = df["cycle"].map(lambda e: int(e[prefix_length:]))
-
-    return df
+def create_pipeline():
+    return Pipeline([node(compute_velocity, ["clean"], "features")])
 
 
 def compute_velocity(df: pd.DataFrame) -> pd.DataFrame:

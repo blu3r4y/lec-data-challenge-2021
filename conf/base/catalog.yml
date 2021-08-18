@@ -1,6 +1,8 @@
 # https://kedro.readthedocs.io/en/stable/05_data/01_data_catalog.html
 
-ldc_train:
+# 01_raw
+
+train.raw:
   type: pandas.CSVDataSet
   filepath: data/01_raw/ldc2021_train.csv.gz
   load_args:
@@ -8,7 +10,7 @@ ldc_train:
     names: ["cycle", "phi", "acc", "pa"]
     header: 0
 
-ldc_test:
+test.raw:
   type: pandas.CSVDataSet
   filepath: data/01_raw/ldc2021_test.csv.gz
   load_args:
@@ -17,10 +19,28 @@ ldc_test:
     usecols: [0, 1, 2]
     header: 0
 
-ldc_test_clean:
-  type: pandas.ParquetDataSet
-  filepath: data/02_intermediate/ldc2021_test_clean.par
+# 02_intermediate
 
-ldc_train_clean:
+train.clean:
   type: pandas.ParquetDataSet
-  filepath: data/02_intermediate/ldc2021_train_clean.par
+  filepath: data/02_intermediate/clean_train.par
+
+test.clean:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/clean_test.par
+
+# 03_primary
+
+train.pressure:
+  type: pandas.ParquetDataSet
+  filepath: data/03_primary/pressure_train.par
+
+# 04_feature
+
+train.features:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/features_train.par
+
+test.features:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/features_test.par

@@ -1,3 +1,3 @@
-from ldc2021.hooks import ProjectHooks
+from .hooks import ProjectHooks
 
 HOOKS = (ProjectHooks(),)
