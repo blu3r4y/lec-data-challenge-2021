@@ -29,6 +29,14 @@ test.clean:
   type: pandas.ParquetDataSet
   filepath: data/02_intermediate/clean_test.par
 
+train.cycle:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/cycle_train.par
+
+test.cycle:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/cycle_test.par
+
 # 03_primary
 
 train.pressure:

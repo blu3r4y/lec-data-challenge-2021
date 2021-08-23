@@ -1,4 +1,12 @@
-# feature parameters
+# cleaning and preprocessing
+drop:
+  train:
+    - cycle
+    - pa
+  test:
+    - cycle
+
+# feature computation
 velocity:
   absolute: True
 rolling:
