@@ -7,6 +7,8 @@ from kedro.framework.session import KedroSession
 from kedro.framework.session.session import _activate_session
 from kedro.framework.startup import _get_project_metadata
 
+log = logging.getLogger(__name__)
+
 
 def add_import_path():
     """
@@ -54,7 +56,7 @@ def load_catalog():
     context = session.load_context()
     catalog = context.catalog
 
-    logging.info("Loaded Kedro project %s", str(metadata.project_name))
+    log.info("Loaded Kedro project %s", str(metadata.project_name))
 
     return catalog
 
