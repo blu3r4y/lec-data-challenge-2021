@@ -99,17 +99,25 @@ model_ridge:
 
 # 07_model_output
 
-model_ridge_out:
-  type: pandas.CSVDataSet
-  filepath: data/07_model_output/pressure_ridge.csv
+train.model_ridge_out:
+  type: pandas.ParquetDataSet
+  versioned: True
+  filepath: data/07_model_output/pressure_ridge_train.par
+
+test.model_ridge_out:
+  type: pandas.ParquetDataSet
+  versioned: True
+  filepath: data/07_model_output/pressure_ridge_test.par
+
 
 # 08_reporting
 
-submission:
+submission_ridge:
   type: pandas.CSVDataSet
-  filepath: data/08_reporting/d276d494f2047b1b.csv
+  versioned: True
+  filepath: data/08_reporting/ridge/d276d494f2047b1b.csv
   save_args:
-    header: ["\"ID_cycle\"", "\"CA\"", "\"x\"", "\"y\""]
+    header: ['"ID_cycle"', '"CA"', '"x"', '"y"']
     quoting: 3 # csv.QUOTE_NONE
     index: False
     sep: ","

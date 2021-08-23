@@ -1,11 +1,11 @@
 import logging
+from functools import partial
 
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import Ridge
-from sklearn.metrics import mean_squared_error
 
-from ...utils.columns import splits
+from ...utils.evaluation import report_scores, splits
 
 log = logging.getLogger(__name__)
 
@@ -21,21 +21,11 @@ def train(
     clf = Ridge(**ridge_args)
     clf.fit(x_train, y_train)
 
-    # check train scores
-    y_train_pred = predict(clf, x_train)
-    score_train = mean_squared_error(y_train, y_train_pred, squared=False)
-
-    # check validation scores
-    y_val_pred = predict(clf, x_val)
-    score_val = mean_squared_error(y_val, y_val_pred, squared=False)
-
-    log.info(f"RMSE [train] : {score_train}")
-    log.info(f"RMSE [val]   : {score_val}")
-    log.info("=" * 80)
+    report_scores(partial(predict, model=clf), x_train, x_val, y_train, y_val)
 
     return clf
 
 
 def predict(model: Ridge, x: np.ndarray) -> np.ndarray:
     y = model.predict(x).ravel()
-    return pd.Series(y, name="pa")
+    return pd.Series(y, name="pa").to_frame()

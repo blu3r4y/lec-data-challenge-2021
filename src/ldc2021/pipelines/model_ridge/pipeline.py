@@ -6,37 +6,36 @@ from .nodes import predict, train
 
 
 def create_pipeline():
-    ns_train = "train"
-    ns_infer = "test"
-
     # DO NOT namespace this pipeline
     return Pipeline(
         [
-            # train on train set
+            # select features for both train and test sets
             node(
-                get_feature_selection_for(ns_train),
+                get_feature_selection_for("train"),
                 ["params:selection.minimal"],
-                f"{ns_train}.input_cache",
+                "train.input_cache",
             ),
+            node(
+                get_feature_selection_for("test"),
+                ["params:selection.minimal"],
+                "test.input_cache",
+            ),
+            # training
             node(
                 train,
-                [
-                    f"{ns_train}.input_cache",
-                    f"{ns_train}.pressure",
-                    "masks",
-                    "params:ridge",
-                ],
+                ["train.input_cache", "train.pressure", "masks", "params:ridge"],
                 "model_ridge",
             ),
-            # infer on test set
+            # inference
             node(
-                get_feature_selection_for(ns_infer),
-                ["params:selection.minimal"],
-                f"{ns_infer}.input_cache",
+                predict, ["model_ridge", "train.input_cache"], "train.model_ridge_out"
             ),
+            node(predict, ["model_ridge", "test.input_cache"], "test.model_ridge_out"),
+            # final dataset
             node(
-                predict, ["model_ridge", f"{ns_infer}.input_cache"], "model_ridge_out",
+                merge_pressure,
+                ["test.raw", "test.model_ridge_out"],
+                "submission_ridge",
             ),
-            node(merge_pressure, [f"{ns_infer}.raw", "model_ridge_out"], "submission",),
         ]
     )
