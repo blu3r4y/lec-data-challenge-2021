@@ -15,10 +15,19 @@ rolling:
     - 10
     - 25
     - 50
+    - 100
+
+# model arguments
+ridge:
+  alpha: 10
 
 # feature selection
 selection:
-  minimal1700:
-    - clean
-    - velocity
-    - rolling
+  minimal:
+    - clean:
+        - phi
+        - acc
+    - velocity:
+        - vel_abs
+    - rolling:
+        - roll_100_std

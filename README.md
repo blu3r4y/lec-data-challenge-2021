@@ -16,9 +16,15 @@ kedro install
 
 ## Usage
 
-Run the following pipelines
+Run the following pipelines to compute the data
 
 ```
 kedro run --parallel --pipeline clean
 kedro run --parallel --pipeline features
+```
+
+Run any of the models
+
+```
+kedro run --pipeline ridge
 ```

@@ -53,7 +53,6 @@ test.velocity:
   type: pandas.ParquetDataSet
   filepath: data/04_feature/velocity_test.par
 
-
 train.log:
   type: pandas.ParquetDataSet
   filepath: data/04_feature/log_train.par
@@ -61,7 +60,6 @@ train.log:
 test.log:
   type: pandas.ParquetDataSet
   filepath: data/04_feature/log_test.par
-
 
 train.sqrt:
   type: pandas.ParquetDataSet
@@ -71,7 +69,6 @@ test.sqrt:
   type: pandas.ParquetDataSet
   filepath: data/04_feature/sqrt_test.par
 
-
 train.rolling:
   type: pandas.ParquetDataSet
   filepath: data/04_feature/rolling_train.par
@@ -79,3 +76,39 @@ train.rolling:
 test.rolling:
   type: pandas.ParquetDataSet
   filepath: data/04_feature/rolling_test.par
+
+# 05_model_input
+
+train.input_cache:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/input_cache_train.par
+
+test.input_cache:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/input_cache_test.par
+
+# 06_models
+
+model_ridge:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/ridge.pkl
+
+# 07_model_output
+
+model_ridge_out:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/pressure_ridge.csv
+
+# 08_reporting
+
+submission:
+  type: pandas.CSVDataSet
+  filepath: data/08_reporting/d276d494f2047b1b.csv
+  save_args:
+    header: ["\"ID_cycle\"", "\"CA\"", "\"x\"", "\"y\""]
+    quoting: 3 # csv.QUOTE_NONE
+    index: False
+    sep: ","
+    encoding: "utf-8"
+    float_format: "%g"
+    line_terminator: "\r\n"
