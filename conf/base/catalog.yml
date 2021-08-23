@@ -97,6 +97,10 @@ model_ridge:
   type: pickle.PickleDataSet
   filepath: data/06_models/ridge.pkl
 
+model_mlp:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/mlp.pkl
+
 # 07_model_output
 
 train.model_ridge_out:
@@ -109,6 +113,15 @@ test.model_ridge_out:
   versioned: True
   filepath: data/07_model_output/pressure_ridge_test.par
 
+train.model_mlp_out:
+  type: pandas.ParquetDataSet
+  versioned: True
+  filepath: data/07_model_output/pressure_mlp_train.par
+
+test.model_mlp_out:
+  type: pandas.ParquetDataSet
+  versioned: True
+  filepath: data/07_model_output/pressure_mlp_test.par
 
 # 08_reporting
 
@@ -116,6 +129,19 @@ submission_ridge:
   type: pandas.CSVDataSet
   versioned: True
   filepath: data/08_reporting/ridge/d276d494f2047b1b.csv
+  save_args:
+    header: ['"ID_cycle"', '"CA"', '"x"', '"y"']
+    quoting: 3 # csv.QUOTE_NONE
+    index: False
+    sep: ","
+    encoding: "utf-8"
+    float_format: "%g"
+    line_terminator: "\r\n"
+
+submission_mlp:
+  type: pandas.CSVDataSet
+  versioned: True
+  filepath: data/08_reporting/mlp/d276d494f2047b1b.csv
   save_args:
     header: ['"ID_cycle"', '"CA"', '"x"', '"y"']
     quoting: 3 # csv.QUOTE_NONE

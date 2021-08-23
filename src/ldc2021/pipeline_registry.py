@@ -4,7 +4,7 @@ from typing import Dict, Iterable
 
 from kedro.pipeline import Pipeline, pipeline
 
-from .pipelines import clean, features, model_ridge
+from .pipelines import clean, features, model_mlp, model_ridge
 from .utils.namespaces import NAMESPACES
 
 
@@ -17,6 +17,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
     pp_features = _for_all(features.create_pipeline())
 
     pp_ridge = model_ridge.create_pipeline()
+    pp_mlp = model_mlp.create_pipeline()
 
     pp_all = pipeline(pp_clean + pp_features + pp_ridge)
 
@@ -24,5 +25,6 @@ def register_pipelines() -> Dict[str, Pipeline]:
         "clean": pp_clean,
         "features": pp_features,
         "ridge": pp_ridge,
+        "mlp": pp_mlp,
         "__default__": pp_all,
     }

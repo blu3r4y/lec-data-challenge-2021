@@ -25,10 +25,25 @@ train_val_split:
 # model arguments
 ridge:
   alpha: 10
+mlp:
+  hidden_layer_sizes:
+    - 300
+  activation: relu
+  solver: adam
+  verbose: True
+  max_iter: 10
 
 # feature selection
 selection:
   minimal:
+    - clean:
+        - phi
+        - acc
+    - velocity:
+        - vel_abs
+    - rolling:
+        - roll_100_std
+  neural:
     - clean:
         - phi
         - acc
