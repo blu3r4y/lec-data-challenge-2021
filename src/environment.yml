@@ -21,3 +21,4 @@ dependencies:
   - pip:
       - funcy
       - kedro[pandas]
+      - kedro[tensorflow]

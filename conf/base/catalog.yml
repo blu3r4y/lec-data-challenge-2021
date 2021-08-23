@@ -101,6 +101,10 @@ model_mlp:
   type: pickle.PickleDataSet
   filepath: data/06_models/mlp.pkl
 
+model_keras:
+  type: tensorflow.TensorFlowModelDataset
+  filepath: data/06_models/keras
+
 # 07_model_output
 
 train.model_ridge_out:
