@@ -4,6 +4,17 @@ import numpy as np
 import pandas as pd
 
 
+def splits(x: pd.DataFrame, y: pd.DataFrame, masks: pd.DataFrame) -> pd.DataFrame:
+    """Get all possible data splits"""
+    x_train, y_train = x.loc[masks["train"]], y.loc[masks["train"]]
+    x_val, y_val = x.loc[masks["val"]], y.loc[masks["val"]]
+
+    assert x_train.shape[0] == y_train.shape[0]
+    assert x_val.shape[0] == y_val.shape[0]
+
+    return x_train, x_val, y_train, y_val
+
+
 def combine_features(*args: pd.DataFrame) -> pd.DataFrame:
     """Horizontally stack multiple features together"""
     nrows = np.array([df.shape[0] for df in args])

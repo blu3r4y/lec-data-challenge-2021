@@ -1,12 +1,15 @@
 from kedro.pipeline import Pipeline, node
 
 from ...utils.columns import drop_features, select_cycle, select_pressure
+from .nodes_train_val import train_val_mask
 from .nodes_transform import transform_cycle
 
 
 def create_pipeline():
     return Pipeline(
         [
+            # get train and validation cycle splits
+            node(train_val_mask, ["train.cycle", "params:train_val_split"], "masks"),
             # clean test data (transform, split of cycle)
             node(transform_cycle, ["test.raw"], "test.TMP_clean-test"),
             node(

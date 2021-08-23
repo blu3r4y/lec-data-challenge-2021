@@ -79,6 +79,10 @@ test.rolling:
 
 # 05_model_input
 
+masks:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/masks.par
+
 train.input_cache:
   type: pandas.ParquetDataSet
   filepath: data/05_model_input/input_cache_train.par

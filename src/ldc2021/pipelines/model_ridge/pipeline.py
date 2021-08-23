@@ -20,7 +20,12 @@ def create_pipeline():
             ),
             node(
                 train,
-                [f"{ns_train}.input_cache", f"{ns_train}.pressure", "params:ridge"],
+                [
+                    f"{ns_train}.input_cache",
+                    f"{ns_train}.pressure",
+                    "masks",
+                    "params:ridge",
+                ],
                 "model_ridge",
             ),
             # infer on test set

@@ -17,6 +17,11 @@ rolling:
     - 50
     - 100
 
+# dataset split
+train_val_split:
+  random_state: 1337
+  test_size: 0.25
+
 # model arguments
 ridge:
   alpha: 10
