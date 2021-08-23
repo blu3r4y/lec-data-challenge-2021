@@ -1,0 +1,16 @@
+# feature parameters
+velocity:
+  absolute: True
+rolling:
+  type: null
+  sizes:
+    - 10
+    - 25
+    - 50
+
+# feature selection
+selection:
+  minimal1700:
+    - clean
+    - velocity
+    - rolling

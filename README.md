@@ -19,5 +19,6 @@ kedro install
 Run the following pipelines
 
 ```
-kedro run --pipeline preprocessing
+kedro run --parallel --pipeline clean
+kedro run --parallel --pipeline features
 ```

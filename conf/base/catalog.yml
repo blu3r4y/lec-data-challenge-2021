@@ -37,10 +37,37 @@ train.pressure:
 
 # 04_feature
 
-train.features:
+train.velocity:
   type: pandas.ParquetDataSet
-  filepath: data/04_feature/features_train.par
+  filepath: data/04_feature/velocity_train.par
 
-test.features:
+test.velocity:
   type: pandas.ParquetDataSet
-  filepath: data/04_feature/features_test.par
+  filepath: data/04_feature/velocity_test.par
+
+
+train.log:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/log_train.par
+
+test.log:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/log_test.par
+
+
+train.sqrt:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/sqrt_train.par
+
+test.sqrt:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/sqrt_test.par
+
+
+train.rolling:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/rolling_train.par
+
+test.rolling:
+  type: pandas.ParquetDataSet
+  filepath: data/04_feature/rolling_test.par
