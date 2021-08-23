@@ -12,12 +12,12 @@ def create_pipeline():
             # select features for both train and test sets
             node(
                 get_feature_selection_for("train"),
-                ["params:selection.minimal"],
+                ["params:selection.neural"],
                 "train.input_cache",
             ),
             node(
                 get_feature_selection_for("test"),
-                ["params:selection.minimal"],
+                ["params:selection.neural"],
                 "test.input_cache",
             ),
             # training
