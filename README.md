@@ -27,4 +27,5 @@ Run any of the models
 
 ```
 kedro run --pipeline ridge
+kedro run --pipeline mlp
 ```
